@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>أعمالنا | Marketing Clinic</title>
+    <meta name="description" content="معرض أعمال Marketing Clinic في تصميم المواقع والتسويق.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container navbar">
+            <a href="/" class="logo">
+                <img src="/logo.jpg" alt="Marketing Clinic">
+            </a>
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+            <nav class="nav-links">
+                <a href="/">الرئيسية</a>
+                <a href="/services.html">خدماتنا</a>
+                <a href="/packages.html">باقاتنا</a>
+                <a href="/portfolio.html" class="active">أعمالنا</a>
+                <a href="/contact.html">اتصل بنا</a>
+                <a href="https://wa.me/213555555555" class="btn btn-primary" target="_blank">اطلب عرض سعر</a>
+            </nav>
+        </div>
+    </header>
+
+    <main id="app">
+        <!-- Page Header -->
+        <section class="section" style="background-color: var(--color-bg-light); padding-bottom: 2rem;">
+            <div class="container text-center">
+                <h1>معرض الأعمال</h1>
+                <p style="max-width: 600px; margin: 1rem auto; color: var(--color-text-light);">نماذج من مشاريعنا
+                    الناجحة
+                    التي ساعدنا فيها عملاءنا على النمو.</p>
+            </div>
+        </section>
+
+        <!-- Portfolio Grid -->
+        <section class="section">
+            <div class="container">
+                <div class="portfolio-grid">
+                    <!-- Project 1 -->
+                    <div class="portfolio-item">
+                        <div class="portfolio-img">
+                            <img src="/assets/project1.jpg" alt="تصميم موقع عيادة أسنان"
+                                onerror="this.src='https://placehold.co/600x400/e0e0e0/0056b3?text=Clinic+Website'">
+                            <div class="overlay">
+                                <a href="#" class="view-btn"><i class="fas fa-eye"></i></a>
+                            </div>
+                        </div>
+                        <div class="portfolio-info">
+                            <h3>عيادة الشفاء للأسنان</h3>
+                            <p>تصميم موقع تعريفي + حملة إعلانية</p>
+                        </div>
+                    </div>
+
+                    <!-- Project 2 -->
+                    <div class="portfolio-item">
+                        <div class="portfolio-img">
+                            <img src="/assets/project2.jpg" alt="متجر إلكتروني للملابس"
+                                onerror="this.src='https://placehold.co/600x400/e0e0e0/0056b3?text=E-commerce+Store'">
+                            <div class="overlay">
+                                <a href="#" class="view-btn"><i class="fas fa-eye"></i></a>
+                            </div>
+                        </div>
+                        <div class="portfolio-info">
+                            <h3>مكتبة الأنوار</h3>
+                            <p>متجر إلكتروني متكامل</p>
+                        </div>
+                    </div>
+
+                    <!-- Project 3 -->
+                    <div class="portfolio-item">
+                        <div class="portfolio-img">
+                            <img src="/assets/project3.jpg" alt="هوية بصرية لمطعم"
+                                onerror="this.src='https://placehold.co/600x400/e0e0e0/0056b3?text=Branding'">
+                            <div class="overlay">
+                                <a href="#" class="view-btn"><i class="fas fa-eye"></i></a>
+                            </div>
+                        </div>
+                        <div class="portfolio-info">
+                            <h3>مطعم القصبة</h3>
+                            <p>تصميم هوية بصرية + إدارة سوشيال ميديا</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Floating WhatsApp -->
+    <a href="https://wa.me/213555555555" class="whatsapp-float" target="_blank" title="تواصل معنا عبر واتساب">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-content">
+            <div class="footer-column">
+                <h3>Marketing Clinic</h3>
+                <p>شريكك الرقمي لنمو أعمالك في الجزائر.</p>
+            </div>
+            <div class="footer-column">
+                <h3>روابط سريعة</h3>
+                <ul>
+                    <li><a href="/">الرئيسية</a></li>
+                    <li><a href="/services.html">خدماتنا</a></li>
+                    <li><a href="/packages.html">باقاتنا</a></li>
+                    <li><a href="/contact.html">اتصل بنا</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>تواصل معنا</h3>
+                <p><i class="fab fa-whatsapp"></i> 0555 55 55 55</p>
+                <p><i class="fas fa-envelope"></i> contact@example.com</p>
+            </div>
+        </div>
+        <div class="text-center"
+            style="margin-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1rem;">
+            <p>&copy; 2025 Marketing Clinic. جميع الحقوق محفوظة.</p>
+        </div>
+    </footer>
+    <script type="module" src="/main.js"></script>
+</body>
+
+</html>

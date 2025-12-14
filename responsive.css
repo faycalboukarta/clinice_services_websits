@@ -1,0 +1,161 @@
+/* =========================================
+   Responsive Design & Mobile Optimization
+   ========================================= */
+
+/* Hamburger Menu Icon */
+.hamburger {
+    display: none;
+    font-size: 1.8rem;
+    color: var(--color-secondary);
+    cursor: pointer;
+    z-index: 1001;
+    padding: 0.5rem;
+}
+
+@media (max-width: 992px) {
+    :root {
+        --container-width: 100%;
+        --spacing-xl: 3rem;
+        --spacing-lg: 2rem;
+    }
+
+    .hero-content h1 {
+        font-size: 2.75rem;
+    }
+}
+
+@media (max-width: 768px) {
+
+    /* Navigation */
+    .navbar {
+        justify-content: space-between;
+        padding: 0 1rem;
+        height: 70px;
+    }
+
+    .hamburger {
+        display: block;
+    }
+
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 85%;
+        max-width: 300px;
+        height: 100vh;
+        background: white;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        padding: 5rem 2rem 2rem;
+        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+        transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: 1000;
+        gap: 1.5rem;
+    }
+
+    .nav-links.active {
+        right: 0;
+    }
+
+    .nav-links a {
+        font-size: 1.2rem;
+        width: 100%;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        padding-bottom: 0.5rem;
+    }
+
+    .nav-links a:last-child {
+        border-bottom: none;
+        margin-top: 1rem;
+    }
+
+    /* Hero Section */
+    .hero {
+        padding: 3rem 0;
+        text-align: center;
+    }
+
+    .hero .container {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .hero-content {
+        order: 2;
+    }
+
+    .hero-image {
+        order: 1;
+        margin-bottom: 1rem;
+        display: flex;
+        /* Ensure centering works for internal div */
+        justify-content: center;
+    }
+
+    .hero-buttons {
+        justify-content: center;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .hero-buttons .btn {
+        width: 100%;
+    }
+
+    /* General Grids */
+    .portfolio-grid,
+    .features-grid,
+    .pricing-grid,
+    .contact-container,
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    /* Contact Page Specifics */
+    .contact-container {
+        padding: 1.5rem;
+    }
+
+    .contact-info-item {
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+    }
+
+    .contact-info-item>div:first-child {
+        margin-left: 0;
+        margin-bottom: 1rem;
+    }
+
+    /* Typography Adjustments */
+    .hero-content h1 {
+        font-size: 2rem;
+    }
+
+    .section-title h2 {
+        font-size: 2rem;
+    }
+
+    h1,
+    h2,
+    h3 {
+        line-height: 1.3;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 0 1rem;
+    }
+
+    .hero-content h1 {
+        font-size: 1.75rem;
+    }
+
+    .portfolio-img {
+        height: 200px;
+    }
+}
