@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة التحكم | Marketing Clinic</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            background-color: var(--color-bg-light);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .admin-wrapper {
+            display: flex;
+            flex: 1;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 250px;
+            background: white;
+            border-left: 1px solid #ddd;
+            padding: 2rem 1rem;
+            position: fixed;
+            height: 100%;
+            top: 0;
+            right: 0;
+        }
+
+        .sidebar h2 {
+            margin-bottom: 2rem;
+            color: var(--color-primary);
+        }
+
+        .nav-item {
+            display: block;
+            padding: 1rem;
+            border-radius: var(--radius-md);
+            color: var(--color-text-light);
+            text-decoration: none;
+            margin-bottom: 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .nav-item:hover,
+        .nav-item.active {
+            background: #e3f2fd;
+            color: var(--color-primary);
+            font-weight: bold;
+        }
+
+        .nav-item i {
+            margin-left: 0.5rem;
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-right: 250px;
+            padding: 2rem;
+            width: calc(100% - 250px);
+        }
+
+        .content-section {
+            display: none;
+        }
+
+        .content-section.active {
+            display: block;
+            animation: fadeIn 0.3s;
+        }
+
+        .login-card {
+            max-width: 400px;
+            margin: 100px auto;
+            background: white;
+            padding: 2rem;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+        }
+
+        /* Tables & Forms */
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .submissions-table {
+            width: 100%;
+            background: white;
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            border-collapse: collapse;
+        }
+
+        .submissions-table th,
+        .submissions-table td {
+            padding: 1rem;
+            text-align: right;
+            border-bottom: 1px solid #eee;
+        }
+
+        .submissions-table th {
+            background-color: var(--color-primary);
+            color: white;
+            font-weight: 500;
+        }
+
+        .form-card {
+            background: white;
+            padding: 2rem;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-sm);
+            margin-bottom: 2rem;
+            max-width: 600px;
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .project-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+
+        .project-card .p-3 {
+            padding: 1rem;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 70px;
+                padding: 1rem 0.5rem;
+            }
+
+            .sidebar span {
+                display: none;
+            }
+
+            .sidebar h2 {
+                display: none;
+            }
+
+            .main-content {
+                margin-right: 70px;
+                width: calc(100% - 70px);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Login View -->
+    <div id="login-view">
+        <div class="login-card">
+            <h2 class="text-center" style="margin-bottom: 1.5rem;">تسجيل الدخول</h2>
+            <form id="login-form">
+                <div class="form-group">
+                    <label>اسم المستخدم</label>
+                    <input type="text" id="username" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label>كلمة المرور</label>
+                    <input type="password" id="password" class="form-control" required>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">دخول</button>
+                <p id="login-error" style="color: red; margin-top: 1rem; text-align: center; display: none;"></p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Dashboard View -->
+    <div id="dashboard-view" style="display: none;" class="admin-wrapper">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <h2 class="text-center">لوحة التحكم</h2>
+            <nav>
+                <div class="nav-item active" onclick="switchTab('messages')">
+                    <i class="fas fa-envelope"></i> <span>الرسائل</span>
+                </div>
+                <div class="nav-item" onclick="switchTab('portfolio')">
+                    <i class="fas fa-briefcase"></i> <span>معرض الأعمال</span>
+                </div>
+                <div class="nav-item" onclick="switchTab('packages')">
+                    <i class="fas fa-box"></i> <span>الباقات</span>
+                </div>
+                <div class="nav-item" onclick="switchTab('settings')">
+                    <i class="fas fa-cog"></i> <span>الإعدادات</span>
+                </div>
+                <div class="nav-item" onclick="logout()" style="color: red; margin-top: 2rem;">
+                    <i class="fas fa-sign-out-alt"></i> <span>خروج</span>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+
+            <!-- Messages Tab -->
+            <section id="tab-messages" class="content-section active">
+                <div class="dashboard-header">
+                    <h1>طلبات التواصل</h1>
+                    <button onclick="fetchSubmissions()" class="btn btn-outline"><i class="fas fa-sync"></i>
+                        تحديث</button>
+                </div>
+                <table class="submissions-table">
+                    <thead>
+                        <tr>
+                            <th>التاريخ</th>
+                            <th>الاسم</th>
+                            <th>الهاتف</th>
+                            <th>الخدمة</th>
+                            <th>الرسالة</th>
+                            <th>إجراءات</th>
+                        </tr>
+                    </thead>
+                    <tbody id="submissions-body">
+                        <!-- Data injected here -->
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- Portfolio Tab -->
+            <section id="tab-portfolio" class="content-section">
+                <div class="dashboard-header">
+                    <h1>إدارة معرض الأعمال</h1>
+                </div>
+
+                <div class="form-card">
+                    <h3>إضافة مشروع جديد</h3>
+                    <form id="portfolio-form">
+                        <div class="form-group">
+                            <label>عنوان المشروع</label>
+                            <input type="text" name="title" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label>وصف قصير</label>
+                            <input type="text" name="description" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label>صورة المشروع</label>
+                            <input type="file" name="image" class="form-control" accept="image/*" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">إضافة المشروع</button>
+                    </form>
+                </div>
+
+                <h3>المشاريع الحالية</h3>
+                <div class="project-grid" id="project-list">
+                    <!-- Projects injected here -->
+                </div>
+            </section>
+
+            <!-- Packages Tab -->
+            <section id="tab-packages" class="content-section">
+                <div class="dashboard-header">
+                    <h1>إدارة الباقات</h1>
+                    <button onclick="seedPackages()" class="btn btn-primary">إعادة تعيين الباقات الافتراضية</button>
+                </div>
+                <div id="packages-list">
+                    <!-- Packages injected here -->
+                </div>
+            </section>
+
+            <!-- Settings Tab -->
+            <section id="tab-settings" class="content-section">
+                <div class="dashboard-header">
+                    <h1>الإعدادات</h1>
+                </div>
+                <div class="form-card">
+                    <h3>إضافة مسؤول جديد</h3>
+                    <form id="create-admin-form">
+                        <div class="form-group">
+                            <label>اسم المستخدم الجديد</label>
+                            <input type="text" id="new-username" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label>كلمة المرور</label>
+                            <input type="password" id="new-password" class="form-control" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">إنشاء حساب</button>
+                        <p id="admin-msg" style="margin-top: 1rem;"></p>
+                    </form>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- Edit Package Modal (Hidden by default, simple implement via prompts or inline edit) -->
+
+    <script src="src/admin.js"></script>
+</body>
+
+</html>
